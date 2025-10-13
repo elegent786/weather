@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - Weather Pulse 🌦️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background:linear-gradient(135deg,#1e3c72,#2a5298);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color:#fff;
+  overflow-x:hidden;
+  animation:bgShift 15s ease-in-out infinite alternate;
+}
+@keyframes bgShift{
+  from{background-position:0% 50%;}
+  to{background-position:100% 50%;}
+}
+nav{
+  position:fixed;top:0;width:100%;
+  background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);
+  text-align:center;padding:10px;z-index:100;
+}
+nav a{margin:0 20px;color:#00feba;text-decoration:none;font-weight:500;transition:0.3s;}
+nav a:hover{color:#fff;text-shadow:0 0 10px #00feba;}
+
+.container{
+  margin-top:100px;
+  width:90%;
+  max-width:800px;
+  text-align:center;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 30px rgba(0,255,255,0.2);
+  backdrop-filter:blur(10px);
+  animation:fadeIn 1.5s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+h1{font-size:2.5em;margin-bottom:15px;text-shadow:0 0 10px rgba(0,255,255,0.5);}
+p{font-size:1.1em;line-height:1.6;margin-bottom:15px;opacity:0.9;}
+.contact{margin-top:25px;}
+.contact a{
+  display:inline-block;
+  margin:10px 15px;
+  padding:10px 15px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#00feba;
+  background:rgba(0,255,255,0.1);
+  transition:0.3s;
+}
+.contact a:hover{
+  background:rgba(0,255,255,0.3);
+  color:#fff;
+  text-shadow:0 0 10px #00feba;
+}
+footer{
+  margin-top:30px;
+  font-size:14px;
+  opacity:0.8;
+}
+footer:hover{opacity:1;text-shadow:0 0 10px #00feba;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="forecast.html">Forecast</a>
+  <a href="tips.html">Tips</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+  <h1>About Weather Pulse 🌦️</h1>
+  <p>Weather Pulse is a professional weather application that provides live weather updates, forecasts, and useful tips for planning your day. Our mission is to give users a visually engaging, fast, and accurate weather experience using the OpenWeatherMap API.</p>
+  <p>The app is fully responsive and uses smooth animations, interactive UI elements, and multi-theme backgrounds to make weather tracking enjoyable.</p>
+
+  <div class="contact">
+    <h2>Contact Me</h2>
+    <a href="mailto:l4kushwaha@gmail.com">Email: l4kushwaha@gmail.com</a>
+    <a href="https://instagram.com/am_sillent_hunter" target="_blank">Instagram: @am_sillent_hunter</a>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Weather Pulse. All rights reserved.
+</footer>
+</body>
+</html>

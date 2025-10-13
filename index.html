@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Pulse 🌦️</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+
+/* 🌌 Body Gradient + Animation */
+body {
+  background: linear-gradient(135deg,#141E30,#243B55);
+  color:white;
+  height:100vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  animation:bgShift 15s infinite alternate ease-in-out;
+  overflow-x:hidden;
+}
+@keyframes bgShift {
+  0% {background-position:0% 50%;}
+  100% {background-position:100% 50%;}
+}
+
+/* 🌟 Navigation */
+nav {
+  position:fixed; top:0; width:100%; display:flex; justify-content:center;
+  background:rgba(0,0,0,0.3); backdrop-filter:blur(10px);
+  padding:12px; gap:40px; z-index:100;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+nav a {
+  color:#00feba; text-decoration:none; font-weight:600; transition:0.3s;
+  position:relative;
+}
+nav a::after {
+  content:""; position:absolute; left:0; bottom:-3px; width:0; height:2px; background:#00feba;
+  transition:0.3s;
+}
+nav a:hover {color:#fff; text-shadow:0 0 10px #00feba;}
+nav a:hover::after {width:100%;}
+
+/* 🌈 Card Styling */
+.card {
+  background:linear-gradient(135deg,#00feba,#5b548a);
+  width:90%; max-width:420px; border-radius:25px; text-align:center; padding:45px 30px;
+  box-shadow:0 0 40px rgba(0,255,255,0.3);
+  transition:all 0.5s ease; position:relative; overflow:hidden;
+  backdrop-filter:blur(12px);
+}
+.card:hover {transform:scale(1.04); box-shadow:0 0 60px rgba(0,255,200,0.6);}
+.card::before {
+  content:""; position:absolute; top:-10%; left:-10%; width:120%; height:120%;
+  background:linear-gradient(45deg,#00feba,#5b548a,#ff4b5c,#00feba);
+  border-radius:30px; filter:blur(45px); opacity:0.45; z-index:-1;
+  animation:rotateGlow 12s linear infinite;
+}
+@keyframes rotateGlow {from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
+
+/* 🔍 Search */
+.search {display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;}
+.search input {
+  flex:1; padding:12px 25px; border:none; border-radius:30px;
+  font-size:17px; outline:none; color:#333; transition:0.3s; background:#ebfffc;
+}
+.search input:focus {box-shadow:0 0 12px #00feba; transform:scale(1.05);}
+.search button {
+  border:none; background:linear-gradient(135deg,#00feba,#5b548a);
+  border-radius:50%; width:52px; height:52px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:0.4s;
+}
+.search button:hover {transform:rotate(360deg); box-shadow:0 0 18px #00feba;}
+.search button img {width:20px;}
+
+/* ☁️ Weather Icon */
+.weather-icon {
+  width:150px; margin:20px auto; animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 15px rgba(255,255,255,0.6));
+}
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* 🌡 Temperature */
+.temp {font-size:85px; text-shadow:0 0 20px #00feba; animation:glow 2s infinite alternate;}
+@keyframes glow {from{text-shadow:0 0 15px #00feba;} to{text-shadow:0 0 30px #5b548a;}}
+.city {font-size:36px; margin-top:-5px; opacity:0.95; animation:fadeIn 1.5s ease forwards;}
+@keyframes fadeIn {from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+
+/* 🌬 Details */
+.detail {display:flex; justify-content:space-between; margin-top:35px;}
+.col {display:flex; align-items:center; text-align:left; transition:0.3s; cursor:pointer;}
+.col:hover {transform:scale(1.12);}
+.col img {width:45px; margin-right:12px; filter:drop-shadow(0 0 10px #fff); animation:spin 8s linear infinite;}
+@keyframes spin {0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);}}
+.humidity,.wind {font-size:30px; font-weight:500; text-shadow:0 0 10px #00feba;}
+
+/* ⚠ Error */
+.error {color:#ff4b5c; margin-top:15px; display:none; font-weight:bold; animation:shake 0.6s;}
+@keyframes shake {0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+/* Footer */
+footer {margin-top:30px; color:#ddd; font-size:14px; opacity:0.85;}
+footer:hover {opacity:1; text-shadow:0 0 10px #00feba;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="forecast.html">Forecast</a>
+  <a href="tips.html">Tips</a>
+  <a href="about.html">About</a>
+</nav>
+
+<div class="card">
+  <h1>Weather Pulse 🌦️</h1>
+
+  <div class="search">
+    <input type="text" placeholder="Enter city..." spellcheck="false">
+    <button><img src="search.png" alt="search"></button>
+  </div>
+
+  <div class="error">⚠️ Invalid city name!</div>
+
+  <div class="weather">
+    <img src="clear.png" class="weather-icon">
+    <h1 class="temp">--°C</h1>
+    <h2 class="city">Search City</h2>
+
+    <div class="detail">
+      <div class="col">
+        <img src="humidity.png" alt="humidity"><div><p class="humidity">--%</p><p>Humidity</p></div>
+      </div>
+      <div class="col">
+        <img src="wind.png" alt="wind"><div><p class="wind">-- km/h</p><p>Wind</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Developed with ❤️ by <b>Lalit’s Weather Studio</b></footer>
+
+<script src="main.js"></script>
+</body>
+</html>
